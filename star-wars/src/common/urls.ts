@@ -1,0 +1,1 @@
+export const HERO_URL: string = 'https://sw-api.starnavi.io';
