@@ -5,6 +5,7 @@ import {Box, Button, Card, CardContent, styled, Typography} from '@mui/material'
 
 import {HeroItemProps} from "../../types/hero.interface";
 import {clearSelectedHero} from "../../features/allHeroesSlice/allHeroesSlice";
+import { AppDispatch } from '../../features/store';
 
 const MainCard = styled(Card)(({theme}) => ({
     display: 'flex',
@@ -23,7 +24,7 @@ const MainBox = styled(Box)(({theme}) => ({
 
 const HeroItem: React.FC<HeroItemProps> = ({ hero }) => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
 
     const {name, birth_year, gender} = hero;
 
