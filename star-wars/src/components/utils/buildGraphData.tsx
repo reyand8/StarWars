@@ -8,7 +8,7 @@ import { Film } from "../../types/film.interface";
 import { Starship } from "../../types/starship.interface";
 
 
-const ContentContainer = styled(Box)(({ theme }) => ({
+export const ContentContainer = styled(Box)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     padding: theme.spacing(1),
@@ -20,7 +20,7 @@ const ContentContainer = styled(Box)(({ theme }) => ({
  * @param info - Additional info about the hero.
  * @returns JSX that represents the hero content.
  */
-const HeroContent = ({ label, info }: { label: string; info?: string }) => (
+export const HeroContent = ({ label, info }: { label: string; info?: string }) => (
     <ContentContainer>
         <Typography variant="h4">
             {label}
@@ -36,7 +36,7 @@ const HeroContent = ({ label, info }: { label: string; info?: string }) => (
  * @param director - The director of the film.
  * @returns JSX represents the film content.
  */
-const FilmContent = ({ label, releaseDate, director }: { label: string; releaseDate: string; director: string }) => (
+export const FilmContent = ({ label, releaseDate, director }: { label: string; releaseDate: string; director: string }) => (
     <ContentContainer>
         <Typography variant="h5">{label}</Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', margin: 1 }}>
@@ -55,7 +55,7 @@ const FilmContent = ({ label, releaseDate, director }: { label: string; releaseD
  * @param manufacturer - The manufacturer of the starship.
  * @returns JSX represents the starship content.
  */
-const StarshipContent = ({ label, model, manufacturer }: { label: string; model: string; manufacturer: string }) => (
+export const StarshipContent = ({ label, model, manufacturer }: { label: string; model: string; manufacturer: string }) => (
     <ContentContainer>
         <Typography variant="h5">{label}</Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', margin: 1 }}>
