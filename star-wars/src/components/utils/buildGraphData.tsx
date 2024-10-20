@@ -1,11 +1,11 @@
 import React from 'react';
 import { Node, Edge } from 'react-flow-renderer';
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 
-import { Hero } from "../../types/hero.interface";
-import { Film } from "../../types/film.interface";
-import { Starship } from "../../types/starship.interface";
+import { Hero } from '../../types/hero.interface';
+import { Film } from '../../types/film.interface';
+import { Starship } from '../../types/starship.interface';
 
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
@@ -81,7 +81,7 @@ export const buildGraphData = (hero: Hero | null, films: Film[] | null, starship
         {
             id: 'hero',
             data: {
-                label: <HeroContent label={name} info={`Birth Year: ${birth_year}`} />
+                label: <HeroContent label={name} info={`Birth Year: ${birth_year}`} />,
             },
             position: { x: 250, y: 0 },
         },
@@ -90,7 +90,7 @@ export const buildGraphData = (hero: Hero | null, films: Film[] | null, starship
             return {
                 id: `film-${id}`,
                 data: {
-                    label: <FilmContent label={title} releaseDate={release_date} director={director} />
+                    label: <FilmContent label={title} releaseDate={release_date} director={director} />,
                 },
                 position: { x: 180 * (index + 1), y: 150 },
             };
@@ -100,7 +100,7 @@ export const buildGraphData = (hero: Hero | null, films: Film[] | null, starship
             return {
                 id: `starship-${id}`,
                 data: {
-                    label: <StarshipContent label={name} model={model} manufacturer={manufacturer} />
+                    label: <StarshipContent label={name} model={model} manufacturer={manufacturer} />,
                 },
                 position: { x: 180 * (index + 1), y: 420 },
             };
@@ -123,7 +123,7 @@ export const buildGraphData = (hero: Hero | null, films: Film[] | null, starship
                     };
                 }
                 return null;
-            })
+            }),
         ),
     ].filter((edge): edge is Edge => edge !== null);
 

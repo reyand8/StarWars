@@ -19,7 +19,7 @@ describe('heroDetailsSlice', () => {
         id: 2,
         title: 'The Empire Strikes Back',
         episode_id: 5,
-        opening_crawl: `It is a dark time`,
+        opening_crawl: 'It is a dark time',
         director: 'Irvin Kershner',
         producer: 'Gary Kurtz, Rick McCallum',
         release_date: '1980-05-17',

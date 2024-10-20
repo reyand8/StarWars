@@ -2,7 +2,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { AppBar, Link, Toolbar, Typography} from '@mui/material';
 
-import theme from "../../assets/theme";
+import theme from '../../assets/theme';
 
 const Navigation = () => {
     return (

@@ -3,9 +3,9 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { buildGraphData, HeroContent, FilmContent, StarshipContent } from './buildGraphData';
-import { Hero } from "../../types/hero.interface";
-import { Film } from "../../types/film.interface";
-import { Starship } from "../../types/starship.interface";
+import { Hero } from '../../types/hero.interface';
+import { Film } from '../../types/film.interface';
+import { Starship } from '../../types/starship.interface';
 
 
 describe('HeroContent', () => {
@@ -19,7 +19,7 @@ describe('HeroContent', () => {
 describe('FilmContent', () => {
     it('renders film label, release date, and director', () => {
         const { getByText } = render(
-            <FilmContent label="The Empire Strikes Back" releaseDate="1980-05-17" director="Irvin Kershner" />
+            <FilmContent label="The Empire Strikes Back" releaseDate="1980-05-17" director="Irvin Kershner" />,
         );
         expect(getByText('The Empire Strikes Back')).toBeInTheDocument();
         expect(getByText('Release Date:')).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe('FilmContent', () => {
 describe('StarshipContent', () => {
     it('renders starship label, model, and manufacturer', () => {
         const { getByText } = render(
-            <StarshipContent label="Millennium Falcon" model="YT-1300 light freighter" manufacturer="Corellian Engineering Corporation" />
+            <StarshipContent label="Millennium Falcon" model="YT-1300 light freighter" manufacturer="Corellian Engineering Corporation" />,
         );
         expect(getByText('Millennium Falcon')).toBeInTheDocument();
         expect(getByText('Model:')).toBeInTheDocument();
@@ -68,7 +68,7 @@ describe('buildGraphData', () => {
                 id: 2,
                 title: 'The Empire Strikes Back',
                 episode_id: 5,
-                opening_crawl: `It is a dark time`,
+                opening_crawl: 'It is a dark time',
                 director: 'Irvin Kershner',
                 producer: 'Gary Kurtz, Rick McCallum',
                 release_date: '1980-05-17',
@@ -78,7 +78,7 @@ describe('buildGraphData', () => {
                 id: 3,
                 title: 'The Empire Strikes Back2',
                 episode_id: 5,
-                opening_crawl: `It is a dark time2`,
+                opening_crawl: 'It is a dark time2',
                 director: 'Irvin Kershner2',
                 producer: 'Gary Kurtz, Rick McCallum2',
                 release_date: '1980-05-12',

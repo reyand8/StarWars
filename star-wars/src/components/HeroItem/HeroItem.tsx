@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import {useDispatch} from "react-redux";
+import {useDispatch} from 'react-redux';
 import {Box, Button, Card, CardContent, styled, Typography} from '@mui/material';
 
-import {HeroItemProps} from "../../types/hero.interface";
-import {clearSelectedHero} from "../../features/allHeroesSlice/allHeroesSlice";
+import {HeroItemProps} from '../../types/hero.interface';
+import {clearSelectedHero} from '../../features/allHeroesSlice/allHeroesSlice';
 import { AppDispatch } from '../../features/store';
 
 const MainCard = styled(Card)(({theme}) => ({
@@ -41,10 +41,10 @@ const HeroItem: React.FC<HeroItemProps> = ({ hero }) => {
                         {name}
                     </Typography>
                     <Box sx={{display: 'flex', flexDirection: 'column', mt:0.5}}>
-                        <Typography variant='subtitle2'>
+                        <Typography variant="subtitle2">
                             Birth year: {birth_year}
                         </Typography>
-                        <Typography variant='subtitle2'>
+                        <Typography variant="subtitle2">
                             Gender: {gender}
                         </Typography>
                     </Box>

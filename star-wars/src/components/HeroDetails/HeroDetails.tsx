@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactFlow, { MiniMap, Controls, Node, Edge } from 'react-flow-renderer';
-import {Box, CircularProgress, styled, Typography} from "@mui/material";
+import {Box, CircularProgress, styled, Typography} from '@mui/material';
 
 import { RootState, AppDispatch } from '../../features/store';
 import { clearHeroDetails, fetchFilmDetails, fetchStarshipDetails } from '../../features/heroDetailsSlice/heroDetailsSlice';
-import { fetchHeroById } from "../../features/allHeroesSlice/allHeroesSlice";
-import { buildGraphData } from "../utils/buildGraphData";
-import {Hero} from "../../types/hero.interface";
-import {Film} from "../../types/film.interface";
-import {Starship} from "../../types/starship.interface";
+import { fetchHeroById } from '../../features/allHeroesSlice/allHeroesSlice';
+import { buildGraphData } from '../utils/buildGraphData';
+import {Hero} from '../../types/hero.interface';
+import {Film} from '../../types/film.interface';
+import {Starship} from '../../types/starship.interface';
 
 
 const BoxContent = styled(Box)(({ theme }) => ({
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center",
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
     height: '800px',
     maxWidth: '890px',
     width: '100%',
     margin: '30px auto',
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
 }));
 
 const HeroDetails: React.FC = () => {
@@ -59,7 +59,7 @@ const HeroDetails: React.FC = () => {
                     const filmDetails = await dispatch(fetchFilmDetails(filmId)).unwrap();
                     resolve(filmDetails);
                 }, index * 100);
-            })
+            }),
         );
         return Promise.all(filmPromises);
     };
@@ -89,7 +89,7 @@ const HeroDetails: React.FC = () => {
                     const starshipDetails = await dispatch(fetchStarshipDetails(starshipId)).unwrap();
                     resolve(starshipDetails);
                 }, index * 100);
-            })
+            }),
         );
         return Promise.all(starshipPromises);
     };

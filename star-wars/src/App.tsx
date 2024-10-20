@@ -2,8 +2,8 @@ import React from 'react';
 import {Box, ThemeProvider} from '@mui/material';
 
 import theme  from './assets/theme';
-import AppRoutes from "./routes/AppRoutes";
-import Navigation from "./components/Navigation/Navigation";
+import AppRoutes from './routes/AppRoutes';
+import Navigation from './components/Navigation/Navigation';
 
 
 const App: React.FC = () => {

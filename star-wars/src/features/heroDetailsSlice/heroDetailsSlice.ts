@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { Starship } from '../../types/starship.interface';
 import { Film } from '../../types/film.interface';
-import {HERO_URL} from "../../common/urls";
+import {HERO_URL} from '../../common/urls';
 
 /**
  * Asynchronously fetches film details from the API by film ID.

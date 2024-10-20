@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import {Hero} from "../../types/hero.interface";
-import {HERO_URL} from "../../common/urls";
+import {Hero} from '../../types/hero.interface';
+import {HERO_URL} from '../../common/urls';
 
 
 /**
@@ -38,7 +38,7 @@ const allHeroesSlice = createSlice({
         next: null,
         previous: null,
         loading: false,
-        error: null as string | null
+        error: null as string | null,
     },
     reducers: {
         /**

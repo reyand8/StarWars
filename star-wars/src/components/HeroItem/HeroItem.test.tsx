@@ -1,18 +1,18 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Provider } from "react-redux";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent } from '@testing-library/react';
 
-import HeroItem from "./HeroItem";
-import store from "../../features/store";
+import HeroItem from './HeroItem';
+import store from '../../features/store';
 
 
-jest.mock("react-router-dom", () => ({
+jest.mock('react-router-dom', () => ({
     useNavigate: jest.fn(),
 }));
 
-describe("HeroItem Component", () => {
+describe('HeroItem Component', () => {
     const mockHero = {
         id: 21,
         name: 'Palpatine',
@@ -41,7 +41,7 @@ describe("HeroItem Component", () => {
         return render(<Provider store={store}>{re}</Provider>);
     };
 
-    it("renders hero information correctly", () => {
+    it('renders hero information correctly', () => {
         renderWithProvider(<HeroItem hero={mockHero} />);
 
         expect(screen.getByText(mockHero.name)).toBeInTheDocument();
@@ -49,13 +49,13 @@ describe("HeroItem Component", () => {
         expect(screen.getByText(`Gender: ${mockHero.gender}`)).toBeInTheDocument();
     });
 
-    it("navigates to hero details on button click", () => {
+    it('navigates to hero details on button click', () => {
         const mockNavigate = jest.fn();
         (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
 
         renderWithProvider(<HeroItem hero={mockHero} />);
 
-        const button = screen.getByRole("button", { name: /Details/i });
+        const button = screen.getByRole('button', { name: /Details/i });
         fireEvent.click(button);
 
         expect(mockNavigate).toHaveBeenCalledWith(`/hero/${mockHero.id}`);

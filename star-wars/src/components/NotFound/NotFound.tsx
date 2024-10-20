@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Box, Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
@@ -13,7 +13,7 @@ const PaperError = styled(Paper)(({ theme }: { theme: Theme }) => ({
     flexDirection: 'column',
     alignItems: 'center',
     margin: 'auto',
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
 }));
 
 const ErrorText = styled(Typography)(({ theme }: { theme: Theme }) => ({

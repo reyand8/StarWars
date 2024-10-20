@@ -1,5 +1,5 @@
 import { ThemeOptions } from '@mui/material/styles';
-import {createTheme} from "@mui/material";
+import {createTheme} from '@mui/material';
 
 const themeOptions: ThemeOptions = {
     palette: {
@@ -64,7 +64,7 @@ const themeOptions: ThemeOptions = {
         body2: {
             fontSize: 12,
             fontWeight: 'bold',
-            fontStyle: 'italic'
+            fontStyle: 'italic',
         },
     },
 };

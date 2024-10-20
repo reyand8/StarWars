@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import heroesReducer from './allHeroesSlice/allHeroesSlice';
-import heroDetailsReducer from "./heroDetailsSlice/heroDetailsSlice";
+import heroDetailsReducer from './heroDetailsSlice/heroDetailsSlice';
 
 /**
 * Creates and configures the global Redux store.
