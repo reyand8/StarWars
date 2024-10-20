@@ -15,7 +15,7 @@ const StyledList = styled(Paper)(({ theme }) => ({
     width: '490px',
     top: theme.spacing(2),
     padding: theme.spacing(1),
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    backgroundColor: theme.palette.secondary.main,
     color: theme.palette.text.secondary,
     ...theme.typography.body2,
 }));
@@ -38,7 +38,9 @@ const HeroList: React.FC = () => {
      * @param {number} page - The page number to fetch heroes for.
      */
     const loadHeroes = (page: number): void => {
-        dispatch(fetchAllHeroes(page));
+        if (page > 0) {
+            dispatch(fetchAllHeroes(page));
+        }
     };
 
     useEffect(() => {
