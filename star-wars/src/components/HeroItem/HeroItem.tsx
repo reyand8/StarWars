@@ -11,7 +11,7 @@ const MainCard = styled(Card)(({theme}) => ({
     display: 'flex',
     minHeight: '164px',
     backgroundColor: theme.palette.background.default,
-    marginBottom: '16px',
+    marginBottom: '14px',
 }));
 
 const MainBox = styled(Box)(({theme}) => ({

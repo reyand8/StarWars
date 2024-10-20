@@ -17,7 +17,7 @@ const BoxContent = styled(Box)(({ theme }) => ({
     display:'flex',
     justifyContent:'center',
     alignItems:'center',
-    height: '800px',
+    height: '620px',
     maxWidth: '890px',
     width: '100%',
     margin: '30px auto',
