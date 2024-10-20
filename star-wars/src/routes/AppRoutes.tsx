@@ -7,8 +7,8 @@ import NotFound from '../components/NotFound/NotFound';
 
 const AppRoutes: React.FC = () => (
     <Routes>
-        <Route index element={<HeroList />} />
-        <Route path="/hero/:id" element={<HeroDetails />} />
+        <Route path="/StarWars" element={<HeroList />} />
+        <Route path="StarWars/hero/:id" element={<HeroDetails />} />
         <Route path="*" element={<NotFound />} />
     </Routes>
 );

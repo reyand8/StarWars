@@ -8,7 +8,7 @@ const Navigation = () => {
     return (
         <AppBar position="static">
             <Toolbar>
-                <Link component={RouterLink} to="/">
+                <Link component={RouterLink} to="/StarWars">
                     <Typography variant="h1" component="div" sx={{
                         color: theme.palette.primary.contrastText,
                         pt: 3, pb:2}}>

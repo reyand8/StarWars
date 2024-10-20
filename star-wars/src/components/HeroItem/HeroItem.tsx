@@ -30,7 +30,7 @@ const HeroItem: React.FC<HeroItemProps> = ({ hero }) => {
 
     const handleClick = (): void => {
         dispatch(clearSelectedHero());
-        navigate(`/hero/${hero.id}`);
+        navigate(`/StarWars/hero/${hero.id}`);
     };
 
     return (
