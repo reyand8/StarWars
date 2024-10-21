@@ -1,4 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
+import fetch from 'cross-fetch';
 
 import { BASE_URL } from '../../common/urls';
 import { Hero } from '../../types/hero.interface';
@@ -19,13 +20,15 @@ import { ApiResponse } from '../../types/apiResponse.interface';
  * @returns {Object} The slice containing hooks to call the API.
  */
 export const searchHeroSlice = createApi({
-    reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+    reducerPath: 'searchHeroSlice',
+    baseQuery: fetchBaseQuery({
+        baseUrl: BASE_URL,
+        fetchFn: fetch,
+    }),
     tagTypes: ['Hero'],
     endpoints: (builder) => ({
         getHeroes: builder.query<ApiResponse<Hero>, string>({
-            query: (params) => `/people/?search=${params}`,
-            providesTags: ['Hero'],
+            query: (searchValue) => `/people/?search=${searchValue}`,
         }),
     }),
 });
