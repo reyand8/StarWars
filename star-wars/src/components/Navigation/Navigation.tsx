@@ -6,8 +6,8 @@ const MainTitle = styled(Typography)(({theme}) => ({
     fontSize: theme.typography.h1.fontSize,
     fontFamily: theme.typography.h1.fontFamily,
     color: theme.palette.primary.contrastText,
-    pt: 3,
-    pb: 2,
+    paddingTop: 3,
+    paddingBottom: 2,
     [theme.breakpoints.down('sm')]: {
         fontSize: 24,
     },
