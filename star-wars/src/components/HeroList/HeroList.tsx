@@ -6,6 +6,7 @@ import { fetchAllHeroes } from '../../features/allHeroesSlice/allHeroesSlice';
 import { AppDispatch } from '../../features/store';
 import HeroItem from '../HeroItem/HeroItem';
 import {Hero, RootHeroesState} from '../../types/hero.interface';
+import HeroSearch from '../HeroSearch/HeroSearch';
 
 
 const StyledList = styled(Paper)(({ theme }) => ({
@@ -74,6 +75,7 @@ const HeroList: React.FC = () => {
                 <Typography>
                     Page: {currentPage}
                 </Typography>
+                <HeroSearch/>
                 {loading ? (
                     <Typography>
                         Loading...
