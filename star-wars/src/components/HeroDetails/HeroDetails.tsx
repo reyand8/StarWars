@@ -17,11 +17,14 @@ const BoxContent = styled(Box)(({ theme }) => ({
     display:'flex',
     justifyContent:'center',
     alignItems:'center',
-    height: '620px',
+    height: '680px',
     maxWidth: '890px',
     width: '100%',
     margin: '30px auto',
     backgroundColor: theme.palette.secondary.main,
+    [theme.breakpoints.down('sm')]: {
+        height: '570px',
+    },
 }));
 
 const HeroDetails: React.FC = () => {
