@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState } from 'react';
-import {Box, CircularProgress, Link, styled, TextField, Typography} from '@mui/material';
+import {Box, CircularProgress, styled, TextField, Typography} from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { useGetHeroesQuery } from '../../features/searchHeroSlice/searchHeroSlice';
 
@@ -73,17 +74,16 @@ const HeroSearch: React.FC = () => {
                         <Typography sx={{ p: 2 }}>No results</Typography>
                     ) : (
                         data.results.map(({id, name}) => (
-                            <Link
+                            <RouterLink
                                 key={id}
                                 onClick={() => setSearchValue('')}
-                                href={`/StarWars/hero/${id}`}
-                                style={{ textDecoration: 'none' }}
-                                component='a'
+                                to={`/StarWars/hero/${id}`}
+                                style={{ color: 'inherit', cursor: 'default', textDecoration: 'none' }}
                             >
                                 <Box sx={{ display: 'flex', p: 1 }}>
-                                    <Typography>{name}</Typography>
+                                    <Typography sx={{ textDecoration: 'none' }}>{name}</Typography>
                                 </Box>
-                            </Link>
+                            </RouterLink>
                         ))
                     )}
                 </SearchResultsBox>
