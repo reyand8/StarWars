@@ -10,6 +10,7 @@ as well as detailed information about the starships and films associated with ea
 The application provides an interactive experience by visualizing the 
 relationships between heroes, starships, and films in a graph format.
 
+The search bar can be useful if users want to find a hero.
 ____
 
 ## Stack
