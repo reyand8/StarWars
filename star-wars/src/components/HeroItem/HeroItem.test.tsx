@@ -5,8 +5,9 @@ import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import HeroItem from './HeroItem';
-import store from '../../features/store';
-
+import { configureStore } from '@reduxjs/toolkit';
+import { searchHeroSlice } from '../../features/searchHeroSlice/searchHeroSlice';
+import heroesReducer from '../../features/allHeroesSlice/allHeroesSlice';
 
 jest.mock('react-router-dom', () => ({
     useNavigate: jest.fn(),
@@ -37,8 +38,17 @@ describe('HeroItem Component', () => {
         jest.clearAllMocks();
     });
 
-    const renderWithProvider = (re: React.ReactElement) => {
-        return render(<Provider store={store}>{re}</Provider>);
+    const renderWithProvider = (children: React.ReactElement) => {
+        const store = configureStore({
+            reducer: {
+                allHeroes: heroesReducer,
+                [searchHeroSlice.reducerPath]: searchHeroSlice.reducer,
+            },
+            middleware: (getDefaultMiddleware) =>
+                getDefaultMiddleware().concat(searchHeroSlice.middleware), // Добавьте middleware для RTK Query
+        });
+
+        return render(<Provider store={store}>{children}</Provider>);
     };
 
     it('renders hero information correctly', () => {
@@ -58,6 +68,6 @@ describe('HeroItem Component', () => {
         const button = screen.getByRole('button', { name: /Details/i });
         fireEvent.click(button);
 
-        expect(mockNavigate).toHaveBeenCalledWith(`/hero/${mockHero.id}`);
+        expect(mockNavigate).toHaveBeenCalledWith(`/StarWars/hero/${mockHero.id}`);
     });
 });
