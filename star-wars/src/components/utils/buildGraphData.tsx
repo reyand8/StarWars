@@ -6,6 +6,7 @@ import { styled } from '@mui/system';
 import { Hero } from '../../types/hero.interface';
 import { Film } from '../../types/film.interface';
 import { Starship } from '../../types/starship.interface';
+import { IMAGE_URL } from '../../common/urls';
 
 
 export const ContentContainer = styled(Box)(({ theme }) => ({
@@ -20,11 +21,19 @@ export const ContentContainer = styled(Box)(({ theme }) => ({
  * @param info - Additional info about the hero.
  * @returns JSX that represents the hero content.
  */
-export const HeroContent = ({ label, info }: { label: string; info?: string }) => (
+export const HeroContent = ({ label, currHero, info }: { label: string, currHero: number, info: string }) => (
     <ContentContainer>
         <Typography variant="h4">
             {label}
         </Typography>
+        <Box component="img"
+            sx={{
+                width: '100%', height: 'auto',
+                borderRadius: 1, boxShadow: 3,
+            }}
+            src={`${IMAGE_URL}/characters/${currHero}.jpg`}
+            onError={(e) => (e.currentTarget.style.display = 'none')}
+        />
         {info && <Typography variant="body1">{info}</Typography>}
     </ContentContainer>
 );
@@ -36,9 +45,18 @@ export const HeroContent = ({ label, info }: { label: string; info?: string }) =
  * @param director - The director of the film.
  * @returns JSX represents the film content.
  */
-export const FilmContent = ({ label, releaseDate, director }: { label: string; releaseDate: string; director: string }) => (
+export const FilmContent = ({ label, heroFilm, releaseDate, director }: { label: string, heroFilm: number,
+    releaseDate: string, director: string }) => (
     <ContentContainer>
         <Typography variant="h5">{label}</Typography>
+        <Box component="img"
+             sx={{
+                 width: '100%', height: 'auto',
+                 borderRadius: 1, boxShadow: 3,
+             }}
+             src={`${IMAGE_URL}/films/${heroFilm}.jpg`}
+             onError={(e) => (e.currentTarget.style.display = 'none')}
+        />
         <Box sx={{ display: 'flex', flexDirection: 'column', margin: 1 }}>
             <Typography variant="body2">Release Date:</Typography>
             <Typography variant="body1">{releaseDate}</Typography>
@@ -55,9 +73,18 @@ export const FilmContent = ({ label, releaseDate, director }: { label: string; r
  * @param manufacturer - The manufacturer of the starship.
  * @returns JSX represents the starship content.
  */
-export const StarshipContent = ({ label, model, manufacturer }: { label: string; model: string; manufacturer: string }) => (
+export const StarshipContent = ({ label, heroStarship, model, manufacturer }: { label: string, heroStarship: number,
+    model: string, manufacturer: string }) => (
     <ContentContainer>
         <Typography variant="h5">{label}</Typography>
+        <Box component="img"
+             sx={{
+                 width: '100%', height: 'auto',
+                 borderRadius: 1, boxShadow: 3,
+             }}
+             src={`${IMAGE_URL}/starships/${heroStarship}.jpg`}
+             onError={(e) => (e.currentTarget.style.display = 'none')}
+        />
         <Box sx={{ display: 'flex', flexDirection: 'column', margin: 1 }}>
             <Typography variant="body2">Model:</Typography>
             <Typography variant="body1">{model}</Typography>
@@ -75,24 +102,24 @@ export const StarshipContent = ({ label, model, manufacturer }: { label: string;
  * @returns An object containing nodes and edges for the graph.
  */
 export const buildGraphData = (hero: Hero | null, films: Film[] | null, starships: Starship[] | null) => {
-    const { name = 'Unknown', birth_year = 'N/A' } = hero || {};
+    const { id = 0, name = 'Unknown', birth_year = 'N/A' } = hero || {};
 
     const newNodes: Node[] = [
         {
-            id: 'hero',
+            id: `hero`,
             data: {
-                label: <HeroContent label={name} info={`Birth Year: ${birth_year}`} />,
+                label: <HeroContent label={name} currHero={id} info={`Birth Year: ${birth_year}`} />,
             },
-            position: { x: 250, y: 0 },
+            position: { x: 250, y: 10 },
         },
         ...films!.map((film, index) => {
             const { id, title, release_date, director } = film;
             return {
                 id: `film-${id}`,
                 data: {
-                    label: <FilmContent label={title} releaseDate={release_date} director={director} />,
+                    label: <FilmContent label={title} heroFilm={id} releaseDate={release_date} director={director} />,
                 },
-                position: { x: 180 * (index + 1), y: 150 },
+                position: { x: 180 * (index + 1), y: 320 },
             };
         }),
         ...starships!.map((starship, index) => {
@@ -100,9 +127,9 @@ export const buildGraphData = (hero: Hero | null, films: Film[] | null, starship
             return {
                 id: `starship-${id}`,
                 data: {
-                    label: <StarshipContent label={name} model={model} manufacturer={manufacturer} />,
+                    label: <StarshipContent label={name} heroStarship={id} model={model} manufacturer={manufacturer} />,
                 },
-                position: { x: 180 * (index + 1), y: 420 },
+                position: { x: 180 * (index + 1), y: 760 },
             };
         }),
     ];

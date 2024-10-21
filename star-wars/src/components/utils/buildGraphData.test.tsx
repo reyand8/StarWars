@@ -10,7 +10,7 @@ import { Starship } from '../../types/starship.interface';
 
 describe('HeroContent', () => {
     it('renders hero label and info', () => {
-        const { getByText } = render(<HeroContent label="Palpatine" info="Birth Year: 82BBY" />);
+        const { getByText } = render(<HeroContent label="Palpatine" currHero={1} info="Birth Year: 82BBY" />);
         expect(getByText('Palpatine')).toBeInTheDocument();
         expect(getByText('Birth Year: 82BBY')).toBeInTheDocument();
     });
@@ -19,7 +19,10 @@ describe('HeroContent', () => {
 describe('FilmContent', () => {
     it('renders film label, release date, and director', () => {
         const { getByText } = render(
-            <FilmContent label="The Empire Strikes Back" releaseDate="1980-05-17" director="Irvin Kershner" />,
+            <FilmContent label="The Empire Strikes Back"
+                         heroFilm={1}
+                         releaseDate="1980-05-17"
+                         director="Irvin Kershner" />,
         );
         expect(getByText('The Empire Strikes Back')).toBeInTheDocument();
         expect(getByText('Release Date:')).toBeInTheDocument();
@@ -32,7 +35,10 @@ describe('FilmContent', () => {
 describe('StarshipContent', () => {
     it('renders starship label, model, and manufacturer', () => {
         const { getByText } = render(
-            <StarshipContent label="Millennium Falcon" model="YT-1300 light freighter" manufacturer="Corellian Engineering Corporation" />,
+            <StarshipContent label="Millennium Falcon"
+                             heroStarship={1}
+                             model="YT-1300 light freighter"
+                             manufacturer="Corellian Engineering Corporation" />,
         );
         expect(getByText('Millennium Falcon')).toBeInTheDocument();
         expect(getByText('Model:')).toBeInTheDocument();
