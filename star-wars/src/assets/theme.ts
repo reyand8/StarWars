@@ -9,6 +9,7 @@ const themeOptions: ThemeOptions = {
         },
         secondary: {
             main: '#FFFFFF7F',
+            dark: '#a9a8a8',
         },
         text: {
             primary: 'rgba(0,0,0,0.87)',
