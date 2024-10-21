@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import {Hero} from '../../types/hero.interface';
-import {HERO_URL} from '../../common/urls';
+import { BASE_URL } from '../../common/urls';
 
 
 /**
@@ -12,7 +12,7 @@ import {HERO_URL} from '../../common/urls';
  */
 export const fetchAllHeroes = createAsyncThunk('allHeroes/fetchAllHeroes',
     async (page: number = 1) => {
-        const response = await axios.get(`${HERO_URL}/people/?page=${page}`);
+        const response = await axios.get(`${BASE_URL}/people/?page=${page}`);
         return response.data;
     });
 
@@ -23,7 +23,7 @@ export const fetchAllHeroes = createAsyncThunk('allHeroes/fetchAllHeroes',
  */
 export const fetchHeroById = createAsyncThunk('allHeroes/fetchHeroById',
     async (heroId: string) => {
-    const response = await axios.get(`${HERO_URL}/people/${heroId}`);
+    const response = await axios.get(`${BASE_URL}/people/${heroId}`);
     return response.data;
 });
 

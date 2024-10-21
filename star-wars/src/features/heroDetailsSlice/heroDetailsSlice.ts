@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { Starship } from '../../types/starship.interface';
 import { Film } from '../../types/film.interface';
-import {HERO_URL} from '../../common/urls';
+import { BASE_URL } from '../../common/urls';
 
 /**
  * Asynchronously fetches film details from the API by film ID.
@@ -12,7 +12,7 @@ import {HERO_URL} from '../../common/urls';
  */
 export const fetchFilmDetails = createAsyncThunk('heroDetails/fetchFilmDetails',
     async (filmId: number) => {
-    const response = await axios.get(`${HERO_URL}/films/${filmId}/`);
+    const response = await axios.get(`${BASE_URL}/films/${filmId}/`);
     return response.data;
 });
 
@@ -23,7 +23,7 @@ export const fetchFilmDetails = createAsyncThunk('heroDetails/fetchFilmDetails',
  */
 export const fetchStarshipDetails = createAsyncThunk('heroDetails/fetchStarshipDetails',
     async (starshipId: number) => {
-    const response = await axios.get(`${HERO_URL}/starships/${starshipId}/`);
+    const response = await axios.get(`${BASE_URL}/starships/${starshipId}/`);
     return response.data;
 });
 
