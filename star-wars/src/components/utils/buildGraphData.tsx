@@ -129,7 +129,7 @@ export const buildGraphData = (hero: Hero | null, films: Film[] | null, starship
                 data: {
                     label: <StarshipContent label={name} heroStarship={id} model={model} manufacturer={manufacturer} />,
                 },
-                position: { x: 180 * (index + 1), y: 760 },
+                position: { x: 180 * (index + 1), y: 800 },
             };
         }),
     ];
