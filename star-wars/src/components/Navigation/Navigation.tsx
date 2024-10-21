@@ -1,19 +1,26 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { AppBar, Link, Toolbar, Typography} from '@mui/material';
+import { AppBar, Link, Toolbar, Typography, styled} from '@mui/material';
 
-import theme from '../../assets/theme';
+const MainTitle = styled(Typography)(({theme}) => ({
+    fontSize: theme.typography.h1.fontSize,
+    fontFamily: theme.typography.h1.fontFamily,
+    color: theme.palette.primary.contrastText,
+    pt: 3,
+    pb: 2,
+    [theme.breakpoints.down('sm')]: {
+        fontSize: 24,
+    },
+}));
 
 const Navigation = () => {
     return (
         <AppBar position="static">
             <Toolbar>
                 <Link component={RouterLink} to="/StarWars">
-                    <Typography variant="h1" component="div" sx={{
-                        color: theme.palette.primary.contrastText,
-                        pt: 3, pb:2}}>
+                    <MainTitle>
                         Star Wars Heroes
-                    </Typography>
+                    </MainTitle>
                 </Link>
             </Toolbar>
         </AppBar>

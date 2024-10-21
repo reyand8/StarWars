@@ -9,9 +9,26 @@ import { AppDispatch } from '../../features/store';
 
 const MainCard = styled(Card)(({theme}) => ({
     display: 'flex',
-    minHeight: '164px',
+    minHeight: '160px',
     backgroundColor: theme.palette.background.default,
     marginBottom: '14px',
+    [theme.breakpoints.down('sm')]: {
+        minHeight: '140px',
+    },
+}));
+
+const MainTitle = styled(Typography)(({theme}) => ({
+    ...theme.typography.h2,
+    [theme.breakpoints.down('sm')]: {
+        fontSize: '24px',
+    },
+}));
+
+const MainSubtitle = styled(Typography)(({theme}) => ({
+    ...theme.typography.subtitle2,
+    [theme.breakpoints.down('sm')]: {
+        fontSize: '16px',
+    },
 }));
 
 const MainBox = styled(Box)(({theme}) => ({
@@ -36,17 +53,17 @@ const HeroItem: React.FC<HeroItemProps> = ({ hero }) => {
     return (
         <MainCard>
             <MainBox>
-                <CardContent sx={{ flex: '1 0 auto' }}>
-                    <Typography sx={{fontSize: '28px'}}>
+                <CardContent>
+                    <MainTitle>
                         {name}
-                    </Typography>
+                    </MainTitle>
                     <Box sx={{display: 'flex', flexDirection: 'column', mt:0.5}}>
-                        <Typography variant="subtitle2">
+                        <MainSubtitle>
                             Birth year: {birth_year}
-                        </Typography>
-                        <Typography variant="subtitle2">
+                        </MainSubtitle>
+                        <MainSubtitle>
                             Gender: {gender}
-                        </Typography>
+                        </MainSubtitle>
                     </Box>
                     <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
                         <Button variant="contained" onClick={handleClick}>

@@ -49,6 +49,10 @@ const themeOptions: ThemeOptions = {
             fontSize: 21,
             fontWeight: 700,
         },
+        h2: {
+            fontSize: 28,
+            fontWeight: 500,
+        },
         h1: {
             fontSize: 32,
             fontFamily: 'Star Wars, sans-serif',

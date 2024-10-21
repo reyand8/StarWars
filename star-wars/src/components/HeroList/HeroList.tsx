@@ -11,13 +11,16 @@ import {Hero, RootHeroesState} from '../../types/hero.interface';
 const StyledList = styled(Paper)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
-    height: '620px',
+    height: '680px',
     width: '420px',
     top: theme.spacing(2),
     padding: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.text.secondary,
     ...theme.typography.body2,
+    [theme.breakpoints.down('sm')]: {
+        height: '540px',
+    },
 }));
 
 const HeroItems = styled(Stack)(({theme}) => ({
