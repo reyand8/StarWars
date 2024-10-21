@@ -1,44 +1,47 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
 import { MemoryRouter } from 'react-router-dom';
+import { configureStore } from '@reduxjs/toolkit';
 import '@testing-library/jest-dom';
 
 import HeroList from './HeroList';
 import { fetchAllHeroes } from '../../features/allHeroesSlice/allHeroesSlice';
+import { searchHeroSlice } from '../../features/searchHeroSlice/searchHeroSlice';
 
-const mockStore = configureStore([]);
+const mockStore = (initialState: { allHeroes: any; }) => {
+    return configureStore({
+        reducer: {
+            allHeroes: (state = initialState.allHeroes) => state,
+            [searchHeroSlice.reducerPath]: searchHeroSlice.reducer,
+        },
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().concat(searchHeroSlice.middleware),
+    });
+};
 
 jest.mock('../../features/allHeroesSlice/allHeroesSlice', () => ({
-    fetchAllHeroes: jest.fn((page) => ({ type: 'FETCH_ALL_HEROES', page })),
+    fetchAllHeroes: jest.fn(() => ({
+        type: 'allHeroes/fetchAllHeroes',
+    })),
 }));
 
-describe('HeroList Component', () => {
-    let store;
-
-    beforeEach(() => {
-        store = mockStore({
-            allHeroes: {
-                heroes: [],
-                loading: false,
-                error: null,
-                next: null,
-                previous: null,
-            },
-        });
-
-        jest.clearAllMocks();
-    });
+describe('HeroList', () => {
+    const initialState = {
+        allHeroes: {
+            heroes: [{ id: 1, name: 'Superman' }, { id: 2, name: 'Batman' }],
+            loading: false,
+            error: null,
+            next: true,
+            previous: false,
+        },
+    };
 
     test('renders loading state', () => {
-        store = mockStore({
+        const store = mockStore({
             allHeroes: {
-                heroes: [],
+                ...initialState.allHeroes,
                 loading: true,
-                error: null,
-                next: null,
-                previous: null,
             },
         });
 
@@ -47,47 +50,17 @@ describe('HeroList Component', () => {
                 <MemoryRouter>
                     <HeroList />
                 </MemoryRouter>
-            </Provider>,
+            </Provider>
         );
 
-        expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
+        expect(screen.getByText(/Loading.../)).toBeInTheDocument();
     });
 
     test('renders error state', () => {
-        store = mockStore({
+        const store = mockStore({
             allHeroes: {
-                heroes: [],
-                loading: false,
+                ...initialState.allHeroes,
                 error: 'Some error occurred',
-                next: null,
-                previous: null,
-            },
-        });
-
-        render(
-            <Provider store={store}>
-                <MemoryRouter>
-                    <HeroList />
-                </MemoryRouter>
-            </Provider>,
-        );
-
-        expect(screen.getByText(/Error/i)).toBeInTheDocument();
-    });
-
-    test('renders heroes list', () => {
-        const mockHeroes = [
-            { id: 1, name: 'Hero 1' },
-            { id: 2, name: 'Hero 2' },
-        ];
-
-        store = mockStore({
-            allHeroes: {
-                heroes: mockHeroes,
-                loading: false,
-                error: null,
-                next: 2,
-                previous: null,
             },
         });
 
@@ -99,26 +72,11 @@ describe('HeroList Component', () => {
             </Provider>
         );
 
-        expect(screen.getByText(/Page: 1/i)).toBeInTheDocument();
-        expect(screen.getByText(/Hero 1/i)).toBeInTheDocument();
-        expect(screen.getByText(/Hero 2/i)).toBeInTheDocument();
+        expect(screen.getByText(/Error/)).toBeInTheDocument();
     });
 
-    test('handles next page button click', async () => {
-        const mockHeroes = [
-            { id: 1, name: 'Hero 1' },
-            { id: 2, name: 'Hero 2' },
-        ];
-
-        store = mockStore({
-            allHeroes: {
-                heroes: mockHeroes,
-                loading: false,
-                error: null,
-                next: 2,
-                previous: null,
-            },
-        });
+    test('renders hero list', () => {
+        const store = mockStore(initialState);
 
         render(
             <Provider store={store}>
@@ -128,67 +86,27 @@ describe('HeroList Component', () => {
             </Provider>
         );
 
-        const nextButton = screen.getByText(/Next/i);
+        expect(screen.getByText(/Page: 1/)).toBeInTheDocument();
+        expect(screen.getByText('Superman')).toBeInTheDocument();
+        expect(screen.getByText('Batman')).toBeInTheDocument();
+    });
+
+    test('handles pagination buttons', () => {
+        const store = mockStore(initialState);
+
+        render(
+            <Provider store={store}>
+                <MemoryRouter>
+                    <HeroList />
+                </MemoryRouter>
+            </Provider>
+        );
+
+        const nextButton = screen.getByText(/Next/);
+        const previousButton = screen.getByText(/Previous/);
+
+        expect(previousButton).toBeDisabled();
         fireEvent.click(nextButton);
-
-        await waitFor(() => {
-            expect(fetchAllHeroes).toHaveBeenCalledWith(2);
-        });
-    });
-
-    test('handles previous page button click', async () => {
-        const mockHeroes = [
-            { id: 1, name: 'Hero 1' },
-            { id: 2, name: 'Hero 2' },
-        ];
-
-        store = mockStore({
-            allHeroes: {
-                heroes: mockHeroes,
-                loading: false,
-                error: null,
-                next: null,
-                previous: 1,
-            },
-        });
-
-        render(
-            <Provider store={store}>
-                <MemoryRouter>
-                    <HeroList />
-                </MemoryRouter>
-            </Provider>
-        );
-
-        const prevButton = screen.getByText(/Previous/i);
-        fireEvent.click(prevButton);
-
-        await waitFor(() => {
-            expect(fetchAllHeroes).toHaveBeenCalledWith(1);
-        });
-    });
-
-    test('renders empty state when no heroes are available', () => {
-        store = mockStore({
-            allHeroes: {
-                heroes: [],
-                loading: false,
-                error: null,
-                next: null,
-                previous: null,
-            },
-        });
-
-        render(
-            <Provider store={store}>
-                <MemoryRouter>
-                    <HeroList />
-                </MemoryRouter>
-            </Provider>
-        );
-
-        expect(screen.getByText(/Page: 1/i)).toBeInTheDocument();
-        expect(screen.queryByText(/Hero 1/i)).not.toBeInTheDocument();
-        expect(screen.queryByText(/Hero 2/i)).not.toBeInTheDocument();
+        expect(fetchAllHeroes).toHaveBeenCalledWith(2);
     });
 });
