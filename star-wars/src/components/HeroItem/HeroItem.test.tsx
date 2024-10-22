@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import HeroItem from './HeroItem';
-import { configureStore } from '@reduxjs/toolkit';
 import { searchHeroSlice } from '../../features/searchHeroSlice/searchHeroSlice';
 import heroesReducer from '../../features/allHeroesSlice/allHeroesSlice';
 
@@ -45,7 +45,7 @@ describe('HeroItem Component', () => {
                 [searchHeroSlice.reducerPath]: searchHeroSlice.reducer,
             },
             middleware: (getDefaultMiddleware) =>
-                getDefaultMiddleware().concat(searchHeroSlice.middleware), // Добавьте middleware для RTK Query
+                getDefaultMiddleware().concat(searchHeroSlice.middleware),
         });
 
         return render(<Provider store={store}>{children}</Provider>);
