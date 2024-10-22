@@ -36,7 +36,6 @@ ____
 
 ## Installation and Usage
 
-The project consists of two parts: the server and the client.
 
 **Installation:**
 
