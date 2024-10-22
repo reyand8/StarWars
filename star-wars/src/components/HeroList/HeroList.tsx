@@ -12,7 +12,7 @@ import HeroSearch from '../HeroSearch/HeroSearch';
 const StyledList = styled(Paper)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
-    height: '680px',
+    height: '640px',
     width: '420px',
     top: theme.spacing(2),
     padding: theme.spacing(1),
