@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { Starship } from '../../types/starship.interface';
-import { Film } from '../../types/film.interface';
+import { FormattedStarship } from '../../types/starship.interface';
+import { FormattedFilm } from '../../types/film.interface';
 import { BASE_URL } from '../../common/urls';
+import { filmToCamelCase, starshipToCamelCase } from '../../common/camelCaseConverter';
 
 /**
  * Asynchronously fetches film details from the API by film ID.
@@ -33,8 +34,8 @@ export const fetchStarshipDetails = createAsyncThunk('heroDetails/fetchStarshipD
  * State interface for the hero details.
  */
 interface HeroDetailsState {
-    films: Film[];
-    starships: Starship[];
+    films: FormattedFilm[];
+    starships: FormattedStarship[];
     loading: boolean;
     error: string | null;
 }
@@ -92,7 +93,7 @@ const heroDetailsSlice = createSlice({
             .addCase(fetchFilmDetails.pending, handleAsyncAction)
             .addCase(fetchFilmDetails.fulfilled, (state, action) => {
                 state.loading = false;
-                state.films.push(action.payload);
+                state.films.push(filmToCamelCase(action.payload));
             })
             .addCase(fetchFilmDetails.rejected, handleRejected)
 
@@ -100,7 +101,7 @@ const heroDetailsSlice = createSlice({
             .addCase(fetchStarshipDetails.pending, handleAsyncAction)
             .addCase(fetchStarshipDetails.fulfilled, (state, action) => {
                 state.loading = false;
-                state.starships.push(action.payload);
+                state.starships.push(starshipToCamelCase(action.payload));
             })
             .addCase(fetchStarshipDetails.rejected, handleRejected);
     },

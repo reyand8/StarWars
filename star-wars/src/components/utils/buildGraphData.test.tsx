@@ -3,9 +3,9 @@ import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 import { buildGraphData } from './buildGraphData';
-import { Hero } from '../../types/hero.interface';
-import { Film } from '../../types/film.interface';
-import { Starship } from '../../types/starship.interface';
+import { FormattedHero } from '../../types/hero.interface';
+import { FormattedFilm } from '../../types/film.interface';
+import { FormattedStarship } from '../../types/starship.interface';
 import { GraphHero } from '../Graph/GraphHero/GraphHero';
 import { GraphFilm } from '../Graph/GraphFilm/GraphFilm';
 import { GraphStarship } from '../Graph/GraphStarship/GraphStarship';
@@ -53,15 +53,15 @@ describe('StarshipContent', () => {
 
 describe('buildGraphData', () => {
     it('builds graph data correctly', () => {
-        const hero: Hero = {
+        const hero: FormattedHero = {
             id: 21,
             name: 'Palpatine',
             height: '170',
             mass: '75',
-            hair_color: 'grey',
-            skin_color: 'pale',
-            eye_color: 'yellow',
-            birth_year: '82BBY',
+            hairColor: 'grey',
+            skinColor: 'pale',
+            eyeColor: 'yellow',
+            birthYear: '82BBY',
             gender: 'male',
             homeworld: 8,
             films: [2, 3],
@@ -72,38 +72,38 @@ describe('buildGraphData', () => {
             edited: '2014-12-20T21:17:50.347000Z',
             url: 'https://sw-api.starnavi.io/people/21/',
         };
-        const films: Film[] = [
+        const films: FormattedFilm[] = [
             {
                 id: 2,
                 title: 'The Empire Strikes Back',
-                episode_id: 5,
-                opening_crawl: 'It is a dark time',
+                episodeId: 5,
+                openingCrawl: 'It is a dark time',
                 director: 'Irvin Kershner',
                 producer: 'Gary Kurtz, Rick McCallum',
-                release_date: '1980-05-17',
+                releaseDate: '1980-05-17',
                 starships: [10, 11],
             },
             {
                 id: 3,
                 title: 'The Empire Strikes Back2',
-                episode_id: 5,
-                opening_crawl: 'It is a dark time2',
+                episodeId: 5,
+                openingCrawl: 'It is a dark time2',
                 director: 'Irvin Kershner2',
                 producer: 'Gary Kurtz, Rick McCallum2',
-                release_date: '1980-05-12',
+                releaseDate: '1980-05-12',
                 starships: [10, 11],
             },
         ];
-        const starships: Starship[] = [
+        const starships: FormattedStarship[] = [
             {
                 id: 10,
                 name: 'Millennium Falcon',
                 model: 'YT-1300 light freighter',
                 manufacturer: 'Corellian Engineering Corporation',
                 length: '34.37',
-                max_atmosphering_speed: '1050',
+                maxAtmospheringSpeed: '1050',
                 passengers: '6',
-                starship_class: 'Light freighter',
+                starshipClass: 'Light freighter',
             },
             {
                 id: 11,
@@ -111,9 +111,9 @@ describe('buildGraphData', () => {
                 model: 'YT-1300 light freighter 1',
                 manufacturer: 'Corellian Engineering Corporation 1',
                 length: '34.371',
-                max_atmosphering_speed: '10501',
+                maxAtmospheringSpeed: '10501',
                 passengers: '61',
-                starship_class: 'Light freighter1',
+                starshipClass: 'Light freighter1',
             },
         ];
 

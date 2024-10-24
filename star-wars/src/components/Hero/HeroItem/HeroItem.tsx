@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import {useDispatch} from 'react-redux';
-import {Box, Button, Card, CardContent, styled, Typography} from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { Box, Button, Card, CardContent, styled, Typography } from '@mui/material';
 
-import {HeroItemProps} from '../../../types/hero.interface';
-import {clearSelectedHero} from '../../../features/allHeroesSlice/allHeroesSlice';
+import { HeroItemProps } from '../../../types/hero.interface';
+import { clearSelectedHero } from '../../../features/allHeroesSlice/allHeroesSlice';
 import { AppDispatch } from '../../../features/store';
 
 const MainCard = styled(Card)(({theme}) => ({
@@ -43,7 +43,7 @@ const HeroItem: React.FC<HeroItemProps> = ({ hero }) => {
     const navigate = useNavigate();
     const dispatch: AppDispatch = useDispatch();
 
-    const {name, birth_year, gender} = hero;
+    const {name, birthYear, gender} = hero;
 
     const handleClick = (): void => {
         dispatch(clearSelectedHero());
@@ -59,7 +59,7 @@ const HeroItem: React.FC<HeroItemProps> = ({ hero }) => {
                     </MainTitle>
                     <Box sx={{display: 'flex', flexDirection: 'column', mt:0.5}}>
                         <MainSubtitle>
-                            Birth year: {birth_year}
+                            Birth year: {birthYear}
                         </MainSubtitle>
                         <MainSubtitle>
                             Gender: {gender}

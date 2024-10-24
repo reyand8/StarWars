@@ -19,10 +19,10 @@ describe('HeroItem Component', () => {
         name: 'Palpatine',
         height: '170',
         mass: '75',
-        hair_color: 'grey',
-        skin_color: 'pale',
-        eye_color: 'yellow',
-        birth_year: '82BBY',
+        hairColor: 'grey',
+        skinColor: 'pale',
+        eyeColor: 'yellow',
+        birthYear: '82BBY',
         gender: 'male',
         homeworld: 8,
         films: [2, 3, 4, 5, 6],
@@ -55,7 +55,7 @@ describe('HeroItem Component', () => {
         renderWithProvider(<HeroItem hero={mockHero} />);
 
         expect(screen.getByText(mockHero.name)).toBeInTheDocument();
-        expect(screen.getByText(`Birth year: ${mockHero.birth_year}`)).toBeInTheDocument();
+        expect(screen.getByText(`Birth year: ${mockHero.birthYear}`)).toBeInTheDocument();
         expect(screen.getByText(`Gender: ${mockHero.gender}`)).toBeInTheDocument();
     });
 

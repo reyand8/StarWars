@@ -18,8 +18,28 @@ export interface Hero {
     vehicles: number[];
 }
 
+export interface FormattedHero {
+    id: number;
+    name: string;
+    gender: string;
+    films: number[];
+    starships: number[];
+    birthYear: string;
+    created: string;
+    edited: string;
+    eyeColor: string;
+    hairColor: string;
+    height: string;
+    homeworld: number;
+    mass: string;
+    skinColor: string;
+    species: number[];
+    url: string;
+    vehicles: number[];
+}
+
 export interface AllHeroes {
-    heroes: Hero[];
+    heroes: FormattedHero[];
     loading: boolean;
     error: string | null;
     next: string | null;
@@ -31,5 +51,5 @@ export interface RootHeroesState {
 }
 
 export interface HeroItemProps {
-    hero: Hero;
+    hero: FormattedHero;
 }

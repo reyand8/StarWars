@@ -2,9 +2,9 @@ import React from 'react';
 import { Node, Edge } from 'react-flow-renderer';
 
 
-import { Hero } from '../../types/hero.interface';
-import { Film } from '../../types/film.interface';
-import { Starship } from '../../types/starship.interface';
+import { FormattedHero } from '../../types/hero.interface';
+import { FormattedFilm } from '../../types/film.interface';
+import { FormattedStarship } from '../../types/starship.interface';
 import { GraphHero } from '../Graph/GraphHero/GraphHero';
 import { GraphFilm } from '../Graph/GraphFilm/GraphFilm';
 import { GraphStarship } from '../Graph/GraphStarship/GraphStarship';
@@ -17,23 +17,24 @@ import { GraphStarship } from '../Graph/GraphStarship/GraphStarship';
  * @param starships - An array of starships associated with the hero.
  * @returns An object containing nodes and edges for the graph.
  */
-export const buildGraphData = (hero: Hero | null, films: Film[] | null, starships: Starship[] | null) => {
-    const { id = 0, name = 'Unknown', birth_year = 'N/A' } = hero || {};
+export const buildGraphData = (hero: FormattedHero | null, films: FormattedFilm[] | null,
+                               starships: FormattedStarship[] | null) => {
+    const { id = 0, name = 'Unknown', birthYear = 'N/A' } = hero || {};
 
     const newNodes: Node[] = [
         {
             id: `hero`,
             data: {
-                label: <GraphHero label={name} currHero={id} info={`Birth Year: ${birth_year}`} />,
+                label: <GraphHero label={name} currHero={id} info={`Birth Year: ${birthYear}`} />,
             },
             position: { x: 250, y: 10 },
         },
         ...films!.map((film, index) => {
-            const { id, title, release_date, director } = film;
+            const { id, title, releaseDate, director } = film;
             return {
                 id: `film-${id}`,
                 data: {
-                    label: <GraphFilm label={title} heroFilm={id} releaseDate={release_date} director={director} />,
+                    label: <GraphFilm label={title} heroFilm={id} releaseDate={releaseDate} director={director} />,
                 },
                 position: { x: 180 * (index + 1), y: 320 },
             };

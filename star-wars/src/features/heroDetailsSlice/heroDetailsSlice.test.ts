@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 import reducer, { fetchFilmDetails, fetchStarshipDetails, clearHeroDetails } from './heroDetailsSlice';
-import { Film } from '../../types/film.interface';
-import { Starship } from '../../types/starship.interface';
+import { FormattedFilm } from '../../types/film.interface';
+import { FormattedStarship } from '../../types/starship.interface';
 
 jest.mock('axios');
 
@@ -15,26 +15,26 @@ describe('heroDetailsSlice', () => {
         error: null,
     };
 
-    const newFilm: Film = {
+    const newFilm: FormattedFilm = {
         id: 2,
         title: 'The Empire Strikes Back',
-        episode_id: 5,
-        opening_crawl: 'It is a dark time',
+        episodeId: 5,
+        openingCrawl: 'It is a dark time',
         director: 'Irvin Kershner',
         producer: 'Gary Kurtz, Rick McCallum',
-        release_date: '1980-05-17',
+        releaseDate: '1980-05-17',
         starships: [3, 10, 11, 12, 15, 17, 21, 22, 23],
     };
 
-    const newStarship: Starship = {
+    const newStarship: FormattedStarship = {
         id: 10,
         name: 'Millennium Falcon',
         model: 'YT-1300 light freighter',
         manufacturer: 'Corellian Engineering Corporation',
         length: '34.37',
-        max_atmosphering_speed: '1050',
+        maxAtmospheringSpeed: '1050',
         passengers: '6',
-        starship_class: 'Light freighter',
+        starshipClass: 'Light freighter',
     };
 
     afterEach(() => {

@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import fetch from 'cross-fetch';
 
 import { BASE_URL } from '../../common/urls';
-import { Hero } from '../../types/hero.interface';
+import { FormattedHero } from '../../types/hero.interface';
 import { ApiResponse } from '../../types/apiResponse.interface';
 
 
@@ -27,7 +27,7 @@ export const searchHeroSlice = createApi({
     }),
     tagTypes: ['Hero'],
     endpoints: (builder) => ({
-        getHeroes: builder.query<ApiResponse<Hero>, string>({
+        getHeroes: builder.query<ApiResponse<FormattedHero>, string>({
             query: (searchValue) => `/people/?search=${searchValue}`,
         }),
     }),

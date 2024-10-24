@@ -8,9 +8,9 @@ import { RootState, AppDispatch } from '../../../features/store';
 import { clearHeroDetails, fetchFilmDetails, fetchStarshipDetails } from '../../../features/heroDetailsSlice/heroDetailsSlice';
 import { fetchHeroById } from '../../../features/allHeroesSlice/allHeroesSlice';
 import { buildGraphData } from '../../utils/buildGraphData';
-import {Hero} from '../../../types/hero.interface';
-import {Film} from '../../../types/film.interface';
-import {Starship} from '../../../types/starship.interface';
+import { FormattedHero } from '../../../types/hero.interface';
+import { FormattedFilm } from '../../../types/film.interface';
+import { FormattedStarship } from '../../../types/starship.interface';
 
 
 const BoxContent = styled(Box)(({ theme }) => ({
@@ -51,13 +51,13 @@ const HeroDetails: React.FC = () => {
 
     /**
      * Fetches film details for the hero.
-     * @param {Hero | null} hero - The hero object for which to fetch film details.
+     * @param {FormattedHero | null} hero - The hero object for which to fetch film details.
      * @returns {Promise<Film[]>} - A promise that resolves to an array of Film objects.
      */
-    const fetchHeroFilmDetails = async (hero: Hero | null): Promise<Film[]> => {
+    const fetchHeroFilmDetails = async (hero: FormattedHero | null): Promise<FormattedFilm[]> => {
         if (!hero || !hero.films.length) return [];
         const filmPromises = hero.films.map((filmId: number, index: number) =>
-            new Promise<Film>((resolve) => {
+            new Promise<FormattedFilm>((resolve) => {
                 setTimeout(async () => {
                     const filmDetails = await dispatch(fetchFilmDetails(filmId)).unwrap();
                     resolve(filmDetails);
@@ -69,11 +69,11 @@ const HeroDetails: React.FC = () => {
 
     /**
      * Return the common starship IDs between the hero and the film details.
-     * @param {Hero | null} hero - The hero object for which to find common starship IDs.
+     * @param {FormattedHero | null} hero - The hero object for which to find common starship IDs.
      * @param {Film[]} filmDetails - An array of Films to compare the hero's starships.
      * @returns {number[]} - An array of IDS of common starship.
      */
-    const getCommonStarshipIds = (hero: Hero | null, filmDetails: Film[]): number[] => {
+    const getCommonStarshipIds = (hero: FormattedHero | null, filmDetails: FormattedFilm[]): number[] => {
         if (!hero || !hero.starships) return [];
         const starshipIdsFromFilms = new Set(filmDetails.flatMap(film => film.starships));
         const starshipIdsFromHero = new Set(hero.starships);
@@ -85,9 +85,9 @@ const HeroDetails: React.FC = () => {
      * @param {number[]} starshipIds - An array of common starship IDs to fetch details for.
      * @returns {Promise<Starship[]>} - A promise that resolves to an array of Starship objects.
      */
-    const fetchHeroStarshipDetails = async (starshipIds: number[]): Promise<Starship[]> => {
+    const fetchHeroStarshipDetails = async (starshipIds: number[]): Promise<FormattedStarship[]> => {
         const starshipPromises = starshipIds.map((starshipId: number, index: number) =>
-            new Promise<Starship>((resolve) => {
+            new Promise<FormattedStarship>((resolve) => {
                 setTimeout(async () => {
                     const starshipDetails = await dispatch(fetchStarshipDetails(starshipId)).unwrap();
                     resolve(starshipDetails);

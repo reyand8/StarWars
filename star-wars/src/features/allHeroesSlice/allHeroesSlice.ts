@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import {Hero} from '../../types/hero.interface';
 import { BASE_URL } from '../../common/urls';
-
+import { heroToCamelCase } from '../../common/camelCaseConverter';
+import { FormattedHero, Hero } from '../../types/hero.interface';
 
 /**
  * Asynchronously fetches all heroes.
@@ -34,7 +34,7 @@ const allHeroesSlice = createSlice({
     name: 'allHeroes',
     initialState: {
         heroes: [],
-        selectedHero: null as Hero | null,
+        selectedHero: null as FormattedHero | null,
         next: null,
         previous: null,
         loading: false,
@@ -56,7 +56,8 @@ const allHeroesSlice = createSlice({
             })
             .addCase(fetchAllHeroes.fulfilled, (state, action) => {
                 const { results, next, previous } = action.payload;
-                state.heroes = results;
+                state.heroes = results.map((hero: Hero) => heroToCamelCase(hero));
+                // state.heroes = results;
                 state.next = next;
                 state.previous = previous;
                 state.loading = false;
@@ -70,7 +71,7 @@ const allHeroesSlice = createSlice({
                     state.loading = true;
                 })
             .addCase(fetchHeroById.fulfilled, (state, action) => {
-                state.selectedHero = action.payload;
+                state.selectedHero = heroToCamelCase(action.payload);
                 state.loading = false;
             })
             .addCase(fetchHeroById.rejected, (state, action) => {
