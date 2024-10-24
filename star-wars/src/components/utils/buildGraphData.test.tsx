@@ -2,15 +2,18 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import { buildGraphData, HeroContent, FilmContent, StarshipContent } from './buildGraphData';
+import { buildGraphData } from './buildGraphData';
 import { Hero } from '../../types/hero.interface';
 import { Film } from '../../types/film.interface';
 import { Starship } from '../../types/starship.interface';
+import { GraphHero } from '../Graph/GraphHero/GraphHero';
+import { GraphFilm } from '../Graph/GraphFilm/GraphFilm';
+import { GraphStarship } from '../Graph/GraphStarship/GraphStarship';
 
 
 describe('HeroContent', () => {
     it('renders hero label and info', () => {
-        const { getByText } = render(<HeroContent label="Palpatine" currHero={1} info="Birth Year: 82BBY" />);
+        const { getByText } = render(<GraphHero label="Palpatine" currHero={1} info="Birth Year: 82BBY" />);
         expect(getByText('Palpatine')).toBeInTheDocument();
         expect(getByText('Birth Year: 82BBY')).toBeInTheDocument();
     });
@@ -19,7 +22,7 @@ describe('HeroContent', () => {
 describe('FilmContent', () => {
     it('renders film label, release date, and director', () => {
         const { getByText } = render(
-            <FilmContent label="The Empire Strikes Back"
+            <GraphFilm label="The Empire Strikes Back"
                          heroFilm={1}
                          releaseDate="1980-05-17"
                          director="Irvin Kershner" />,
@@ -35,7 +38,7 @@ describe('FilmContent', () => {
 describe('StarshipContent', () => {
     it('renders starship label, model, and manufacturer', () => {
         const { getByText } = render(
-            <StarshipContent label="Millennium Falcon"
+            <GraphStarship label="Millennium Falcon"
                              heroStarship={1}
                              model="YT-1300 light freighter"
                              manufacturer="Corellian Engineering Corporation" />,

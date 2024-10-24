@@ -1,98 +1,14 @@
 import React from 'react';
 import { Node, Edge } from 'react-flow-renderer';
-import { Box, Typography } from '@mui/material';
-import { styled } from '@mui/system';
+
 
 import { Hero } from '../../types/hero.interface';
 import { Film } from '../../types/film.interface';
 import { Starship } from '../../types/starship.interface';
-import { IMAGE_URL } from '../../common/urls';
+import { GraphHero } from '../Graph/GraphHero/GraphHero';
+import { GraphFilm } from '../Graph/GraphFilm/GraphFilm';
+import { GraphStarship } from '../Graph/GraphStarship/GraphStarship';
 
-
-export const ContentContainer = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    padding: theme.spacing(1),
-}));
-
-/**
- * Displays hero content with a label and additional info.
- * @param label - The name of the hero.
- * @param info - Additional info about the hero.
- * @returns JSX that represents the hero content.
- */
-export const HeroContent = ({ label, currHero, info }: { label: string, currHero: number, info: string }) => (
-    <ContentContainer>
-        <Typography variant="h4">
-            {label}
-        </Typography>
-        <Box component="img"
-            sx={{
-                width: '100%', height: 'auto',
-                borderRadius: 1, boxShadow: 3,
-            }}
-            src={`${IMAGE_URL}/characters/${currHero}.jpg`}
-            onError={(e) => (e.currentTarget.style.display = 'none')}
-        />
-        {info && <Typography variant="body1">{info}</Typography>}
-    </ContentContainer>
-);
-
-/**
- * Displays film content with a label and additional info.
- * @param label - The title of the film.
- * @param releaseDate - The release date of the film.
- * @param director - The director of the film.
- * @returns JSX represents the film content.
- */
-export const FilmContent = ({ label, heroFilm, releaseDate, director }: { label: string, heroFilm: number,
-    releaseDate: string, director: string }) => (
-    <ContentContainer>
-        <Typography variant="h5">{label}</Typography>
-        <Box component="img"
-             sx={{
-                 width: '100%', height: 'auto',
-                 borderRadius: 1, boxShadow: 3,
-             }}
-             src={`${IMAGE_URL}/films/${heroFilm}.jpg`}
-             onError={(e) => (e.currentTarget.style.display = 'none')}
-        />
-        <Box sx={{ display: 'flex', flexDirection: 'column', margin: 1 }}>
-            <Typography variant="body2">Release Date:</Typography>
-            <Typography variant="body1">{releaseDate}</Typography>
-            <Typography variant="body2">Director:</Typography>
-            <Typography variant="body1">{director}</Typography>
-        </Box>
-    </ContentContainer>
-);
-
-/**
- * Displays starship content with a label and additional info.
- * @param label - The name of the starship.
- * @param model - The model of the starship.
- * @param manufacturer - The manufacturer of the starship.
- * @returns JSX represents the starship content.
- */
-export const StarshipContent = ({ label, heroStarship, model, manufacturer }: { label: string, heroStarship: number,
-    model: string, manufacturer: string }) => (
-    <ContentContainer>
-        <Typography variant="h5">{label}</Typography>
-        <Box component="img"
-             sx={{
-                 width: '100%', height: 'auto',
-                 borderRadius: 1, boxShadow: 3,
-             }}
-             src={`${IMAGE_URL}/starships/${heroStarship}.jpg`}
-             onError={(e) => (e.currentTarget.style.display = 'none')}
-        />
-        <Box sx={{ display: 'flex', flexDirection: 'column', margin: 1 }}>
-            <Typography variant="body2">Model:</Typography>
-            <Typography variant="body1">{model}</Typography>
-            <Typography variant="body2">Manufacturer:</Typography>
-            <Typography variant="body1">{manufacturer}</Typography>
-        </Box>
-    </ContentContainer>
-);
 
 /**
  * Builds graph data for the hero, their films, and starships.
@@ -108,7 +24,7 @@ export const buildGraphData = (hero: Hero | null, films: Film[] | null, starship
         {
             id: `hero`,
             data: {
-                label: <HeroContent label={name} currHero={id} info={`Birth Year: ${birth_year}`} />,
+                label: <GraphHero label={name} currHero={id} info={`Birth Year: ${birth_year}`} />,
             },
             position: { x: 250, y: 10 },
         },
@@ -117,7 +33,7 @@ export const buildGraphData = (hero: Hero | null, films: Film[] | null, starship
             return {
                 id: `film-${id}`,
                 data: {
-                    label: <FilmContent label={title} heroFilm={id} releaseDate={release_date} director={director} />,
+                    label: <GraphFilm label={title} heroFilm={id} releaseDate={release_date} director={director} />,
                 },
                 position: { x: 180 * (index + 1), y: 320 },
             };
@@ -127,7 +43,7 @@ export const buildGraphData = (hero: Hero | null, films: Film[] | null, starship
             return {
                 id: `starship-${id}`,
                 data: {
-                    label: <StarshipContent label={name} heroStarship={id} model={model} manufacturer={manufacturer} />,
+                    label: <GraphStarship label={name} heroStarship={id} model={model} manufacturer={manufacturer} />,
                 },
                 position: { x: 180 * (index + 1), y: 800 },
             };
