@@ -6,8 +6,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import '@testing-library/jest-dom';
 
 import HeroList from './HeroList';
-import { fetchAllHeroes } from '../../features/allHeroesSlice/allHeroesSlice';
-import { searchHeroSlice } from '../../features/searchHeroSlice/searchHeroSlice';
+import { fetchAllHeroes } from '../../../features/allHeroesSlice/allHeroesSlice';
+import { searchHeroSlice } from '../../../features/searchHeroSlice/searchHeroSlice';
 
 const mockStore = (initialState: { allHeroes: any; }) => {
     return configureStore({

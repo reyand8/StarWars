@@ -6,8 +6,8 @@ import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import HeroItem from './HeroItem';
-import { searchHeroSlice } from '../../features/searchHeroSlice/searchHeroSlice';
-import heroesReducer from '../../features/allHeroesSlice/allHeroesSlice';
+import { searchHeroSlice } from '../../../features/searchHeroSlice/searchHeroSlice';
+import heroesReducer from '../../../features/allHeroesSlice/allHeroesSlice';
 
 jest.mock('react-router-dom', () => ({
     useNavigate: jest.fn(),

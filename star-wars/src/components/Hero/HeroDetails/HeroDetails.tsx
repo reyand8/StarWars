@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReactFlow, { MiniMap, Controls, Node, Edge } from 'react-flow-renderer';
 import {Box, CircularProgress, styled, Typography} from '@mui/material';
 
-import { RootState, AppDispatch } from '../../features/store';
-import { clearHeroDetails, fetchFilmDetails, fetchStarshipDetails } from '../../features/heroDetailsSlice/heroDetailsSlice';
-import { fetchHeroById } from '../../features/allHeroesSlice/allHeroesSlice';
-import { buildGraphData } from '../utils/buildGraphData';
-import {Hero} from '../../types/hero.interface';
-import {Film} from '../../types/film.interface';
-import {Starship} from '../../types/starship.interface';
+import { RootState, AppDispatch } from '../../../features/store';
+import { clearHeroDetails, fetchFilmDetails, fetchStarshipDetails } from '../../../features/heroDetailsSlice/heroDetailsSlice';
+import { fetchHeroById } from '../../../features/allHeroesSlice/allHeroesSlice';
+import { buildGraphData } from '../../utils/buildGraphData';
+import {Hero} from '../../../types/hero.interface';
+import {Film} from '../../../types/film.interface';
+import {Starship} from '../../../types/starship.interface';
 
 
 const BoxContent = styled(Box)(({ theme }) => ({

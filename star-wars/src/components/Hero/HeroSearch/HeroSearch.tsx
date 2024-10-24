@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState } from 'react';
 import {Box, CircularProgress, styled, TextField, Typography} from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { useGetHeroesQuery } from '../../features/searchHeroSlice/searchHeroSlice';
+import { useGetHeroesQuery } from '../../../features/searchHeroSlice/searchHeroSlice';
 
 
 const SearchResultsBox = styled(Box)(({ theme }) => ({

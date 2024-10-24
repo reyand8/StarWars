@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import {Box, Button, Paper, Stack, styled, Typography} from '@mui/material';
 
-import { fetchAllHeroes } from '../../features/allHeroesSlice/allHeroesSlice';
-import { AppDispatch } from '../../features/store';
+import { fetchAllHeroes } from '../../../features/allHeroesSlice/allHeroesSlice';
+import { AppDispatch } from '../../../features/store';
 import HeroItem from '../HeroItem/HeroItem';
-import {Hero, RootHeroesState} from '../../types/hero.interface';
+import {Hero, RootHeroesState} from '../../../types/hero.interface';
 import HeroSearch from '../HeroSearch/HeroSearch';
 
 
