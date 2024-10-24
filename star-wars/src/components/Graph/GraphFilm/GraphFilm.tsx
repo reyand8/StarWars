@@ -1,7 +1,8 @@
 import { Box, Typography } from '@mui/material';
 
 import { IMAGE_URL } from '../../../common/urls';
-import { ContentContainer } from '../../Hero/styles/heroStyles';
+import { ContentContainer } from '../../../common/styles';
+
 
 
 /**
