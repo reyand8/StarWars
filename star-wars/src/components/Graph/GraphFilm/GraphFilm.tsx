@@ -1,13 +1,7 @@
-import styled from '@emotion/styled';
 import { Box, Typography } from '@mui/material';
 
 import { IMAGE_URL } from '../../../common/urls';
-
-
-export const ContentContainer = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-}));
+import { ContentContainer } from '../../Hero/styles/heroStyles';
 
 
 /**
