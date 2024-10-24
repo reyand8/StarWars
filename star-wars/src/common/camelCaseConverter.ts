@@ -2,50 +2,56 @@ import { Film, FormattedFilm } from '../types/film.interface';
 import { Hero, FormattedHero } from '../types/hero.interface';
 import { Starship, FormattedStarship } from '../types/starship.interface';
 
-export const heroToCamelCase = (hero: Hero): FormattedHero => {
+export const heroToCamelCase = ({   id, name, gender, films,
+                                    starships, birth_year, created,
+                                    edited, eye_color, hair_color, height,
+                                    homeworld, mass, skin_color, species, url, vehicles }: Hero): FormattedHero => {
     return {
-        id: hero.id,
-        name: hero.name,
-        gender: hero.gender,
-        films: hero.films,
-        starships: hero.starships,
-        birthYear: hero.birth_year,
-        created: hero.created,
-        edited: hero.edited,
-        eyeColor: hero.eye_color,
-        hairColor: hero.hair_color,
-        height: hero.height,
-        homeworld: hero.homeworld,
-        mass: hero.mass,
-        skinColor: hero.skin_color,
-        species: hero.species,
-        url: hero.url,
-        vehicles: hero.vehicles,
+        id,
+        name,
+        gender,
+        films,
+        starships,
+        birthYear: birth_year,
+        created,
+        edited,
+        eyeColor: eye_color,
+        hairColor: hair_color,
+        height,
+        homeworld,
+        mass,
+        skinColor: skin_color,
+        species,
+        url,
+        vehicles,
     };
 };
 
-export const filmToCamelCase = (film: Film): FormattedFilm => {
+export const filmToCamelCase = ({   id, title, opening_crawl, starships,
+                                    episode_id, release_date, director, producer }: Film): FormattedFilm => {
     return {
-        id: film.id,
-        title: film.title,
-        openingCrawl: film.opening_crawl,
-        starships: film.starships,
-        episodeId: film.episode_id,
-        releaseDate: film.release_date,
-        director: film.director,
-        producer: film.producer,
+        id,
+        title,
+        openingCrawl: opening_crawl,
+        starships,
+        episodeId: episode_id,
+        releaseDate: release_date,
+        director,
+        producer,
     };
 };
 
-export const starshipToCamelCase = (starship: Starship): FormattedStarship => {
+export const starshipToCamelCase = ({   id, name, model, manufacturer,
+                                        length, max_atmosphering_speed,
+                                        passengers, starship_class }: Starship): FormattedStarship => {
     return {
-        id: starship.id,
-        name: starship.name,
-        model: starship.model,
-        manufacturer: starship.manufacturer,
-        length: starship.length,
-        maxAtmospheringSpeed: starship.max_atmosphering_speed,
-        passengers: starship.passengers,
-        starshipClass: starship.starship_class,
+        id,
+        name,
+        model,
+        manufacturer,
+        length,
+        maxAtmospheringSpeed: max_atmosphering_speed,
+        passengers,
+        starshipClass: starship_class,
     };
 };
