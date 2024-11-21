@@ -101,7 +101,7 @@ const HeroDetails: React.FC = () => {
      * Fetches details for the hero, including films and starships, and builds graph data.
      * Sets the nodes and edges state based on the fetched details.
      */
-    const fetchHeroDetails = async () => {
+    const fetchHeroDetails = async (): Promise<void> => {
         setLoading(true);
         try {
             const filmDetails = await fetchHeroFilmDetails(hero);

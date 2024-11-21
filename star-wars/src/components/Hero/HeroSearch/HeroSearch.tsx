@@ -30,7 +30,7 @@ const HeroSearch: React.FC = () => {
      * If the click is outside, the search value will be cleared.
      * @param {MouseEvent} event - The mouse event triggered by the click.
      */
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: MouseEvent): void => {
         if (searchResultsRef.current && !searchResultsRef.current.contains(event.target as Node)) {
             setSearchValue('');
         }
@@ -51,7 +51,7 @@ const HeroSearch: React.FC = () => {
      * Updates the search value based on user input.
      * @param {React.ChangeEvent<HTMLInputElement>} event - The input change event.
      */
-    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setSearchValue(event.target.value);
     };
 
