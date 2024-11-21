@@ -8,6 +8,7 @@ import { ContentContainer } from '../../../common/styles';
 /**
  * Displays film content with a label and additional info.
  * @param label - The title of the film.
+ * @param heroFilm - The hero film.
  * @param releaseDate - The release date of the film.
  * @param director - The director of the film.
  * @returns JSX represents the film content.

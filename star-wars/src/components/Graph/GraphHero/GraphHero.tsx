@@ -7,6 +7,7 @@ import { ContentContainer } from '../../../common/styles';
 /**
  * Displays hero content with a label and additional info.
  * @param label - The name of the hero.
+ * @param currHero - The current hero.
  * @param info - Additional info about the hero.
  * @returns JSX that represents the hero content.
  */

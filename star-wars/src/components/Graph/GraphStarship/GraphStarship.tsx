@@ -7,6 +7,7 @@ import { ContentContainer } from '../../../common/styles';
 /**
  * Displays starship content with a label and additional info.
  * @param label - The name of the starship.
+ * @param heroStarship - The starship of the hero.
  * @param model - The model of the starship.
  * @param manufacturer - The manufacturer of the starship.
  * @returns JSX represents the starship content.
